@@ -1,1 +1,6 @@
-theme: jekyll-theme-midnight
+theme: minima
+title: Mechapede Demos
+description: Web Demos
+show_downloads: false
+minima:
+  skin: dark
