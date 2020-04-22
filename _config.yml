@@ -1,6 +1,13 @@
+title: Portfolio
+author: Matthew MacDonald
+ 
 theme: minima
-title: Mechapede Demos
-description: Web Demos
+
+description: Projects and Demos
 show_downloads: false
-minima:
-  skin: dark
+
+header_pages:
+ - webdemo.md
+ - compiler.md
+ - about.md
+
