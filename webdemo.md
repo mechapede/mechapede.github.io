@@ -22,8 +22,6 @@ These can be seen in the demo below.
 
 {% include game.html %}
 
-WASD Movement + Mouse (Click to lock mouse)
-
 The [source code](https://github.com/mechapede/terra) is available on Github. 
 
 I am not an artist. Assets are kindly provided by:

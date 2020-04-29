@@ -69,6 +69,9 @@ export function getScript(name) {
 
 export function addModel(name, model) {
   console.assert(!(name in models), {name:name,model:model, errorMsg:"Model with the same name clobbered!"});
+  console.log("Model",name);
+  console.log(model);
+  
   models[name] = model;
   return true;
 }

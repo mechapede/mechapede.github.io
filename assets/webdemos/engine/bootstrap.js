@@ -117,7 +117,6 @@ export function bootstrap(canvas_name,asset_path) {
         }
         
         var material = new Material(shader,textures,engine_attributes,attributes, engine_uniforms, uniforms);
-        //TODO: dirty hack
         material.texture_locations = texture_locations;
         
         data.addMaterial(material_key,material);

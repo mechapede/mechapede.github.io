@@ -1,16 +1,17 @@
 <script type="module" src="/assets/webdemos/terra.js"> </script>
 
-<style>
-#game_canvas {
-  width:100%;
-  height:100%;
-}
-</style>
-
-<div class="game_player" >
-  <canvas id="game_canvas">
-    Demo requires a browser that is compatible with WebGL.
-  </canvas>
+<div class="canvas_holder" >
+  <div class="canvas_ui" >
+    <canvas id="game_canvas">
+      Demo requires a browser that is compatible with WebGL.
+    </canvas>
+    Movement:
+    <button type="button" disabled>W</button>
+    <button type="button" disabled>A</button>
+    <button type="button" disabled>S</button>
+    <button type="button" disabled>D</button>
+    Look: <i class="fas fa-mouse" style="color:white;"></i> (click on canvas to use)
+  </div>
 </div>
 
 
