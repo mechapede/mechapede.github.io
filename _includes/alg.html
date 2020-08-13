@@ -1,0 +1,60 @@
+<script type="module" src="/assets/compute/alg.js"> </script>
+<div class="rna-algs">
+  <div><h3>Structure Predictor</h3></div>
+  <div class="box-option">
+    <div class="small">
+      <label for="gap_penalty">Gap Penalty</label>
+    </div>
+    <div class="small">
+      <input type="number" id="gap_penalty" placeholder="0.1">
+    </div>
+    <div class="small">
+      <label for="min_gap">Minimum Gap</label>
+    </div>
+    <div class="small">
+      <input type="number" id="min_gap" placeholder="2">
+    </div>
+  </div>
+  <div class="box-option">
+    <div class="small">Pairing Scores</div>
+    <div class="small">
+      <label for="weight_au"> A-U </label>
+      <div><input type="number" id="weight_au" placeholder="2"> </div>
+    </div>
+    <div class="small">
+      <label for="weight_gu"> G-U </label>
+      <div><input type="number" id="weight_gu" placeholder="2"></div>
+    </div>
+    <div class="small">
+      <label for="weight_gc"> G-C </label>
+      <div><input type="number" id="weight_gc" placeholder="3"></div>
+    </div>
+  </div>
+  <div class="box-option">
+    <div>
+      <label for="input_seq"> Sequence </label>
+    </div>
+    <div class="big">
+      <textarea id="input_seq" rows="3">GGCACUGAA</textarea>
+    </div>
+    <div class="small">
+      <button id="calc_result"> Solve </button>
+    </div>
+  </div>
+  <div class="box-option">
+    <div>
+      <label for="result_seq">Structure</label> 
+    </div>
+    <div class="big">
+      <textarea id="result_seq" rows="3" readonly> </textarea>
+    </div>
+    <div>
+      <label for="result_score">Score</label> 
+    </div>
+    <div class="small">
+      <input type="number" id="result_score" readonly>
+    </div>
+  </div>
+</div>
+
+

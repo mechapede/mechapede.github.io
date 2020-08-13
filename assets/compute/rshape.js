@@ -19,7 +19,13 @@ var Module = typeof Module !== 'undefined' ? Module : {};
 
 // --pre-jses are emitted after the Module integration code, so that they can
 // refer to Module (if they choose; they can also define Module)
-// {{PRE_JSES}}
+//specify path for server
+Module['locateFile'] = function(path, prefix) {
+  // TODO: find better option than hardcoded
+  return "/assets/compute/" + prefix + path;
+}
+
+
 
 // Sometimes an existing Module object exists with properties
 // meant to overwrite the default module functionality. Here
@@ -669,8 +675,8 @@ var wasmMemory;
 // In the wasm backend, we polyfill the WebAssembly object,
 // so this creates a (non-native-wasm) table for us.
 var wasmTable = new WebAssembly.Table({
-  'initial': 10,
-  'maximum': 10 + 0,
+  'initial': 9,
+  'maximum': 9 + 0,
   'element': 'anyfunc'
 });
 
@@ -1289,11 +1295,11 @@ function updateGlobalBufferAndViews(buf) {
 }
 
 var STATIC_BASE = 1024,
-    STACK_BASE = 5253056,
+    STACK_BASE = 5253088,
     STACKTOP = STACK_BASE,
-    STACK_MAX = 10176,
-    DYNAMIC_BASE = 5253056,
-    DYNAMICTOP_PTR = 10016;
+    STACK_MAX = 10208,
+    DYNAMIC_BASE = 5253088,
+    DYNAMICTOP_PTR = 10048;
 
 assert(STACK_BASE % 16 === 0, 'stack must start aligned');
 assert(DYNAMIC_BASE % 16 === 0, 'heap must start aligned');
@@ -1728,7 +1734,7 @@ function createExportWrapper(name, fixedasm) {
   };
 }
 
-var wasmBinaryFile = 'assets/rshape.wasm';
+var wasmBinaryFile = 'rshape.wasm';
 if (!isDataURI(wasmBinaryFile)) {
   wasmBinaryFile = locateFile(wasmBinaryFile);
 }
@@ -1872,7 +1878,7 @@ var ASM_CONSTS = {
 
 
 
-// STATICTOP = STATIC_BASE + 9152;
+// STATICTOP = STATIC_BASE + 9184;
 /* global initializers */  __ATINIT__.push({ func: function() { ___wasm_call_ctors() } });
 
 
@@ -1935,7 +1941,7 @@ var ASM_CONSTS = {
   var _abs=Math_abs;
 
   function _emscripten_get_sbrk_ptr() {
-      return 10016;
+      return 10048;
     }
 
   function _emscripten_memcpy_big(dest, src, num) {
@@ -2117,6 +2123,21 @@ var _malloc = Module["_malloc"] = createExportWrapper("malloc");
 var _free = Module["_free"] = createExportWrapper("free");
 
 /** @type {function(...*):?} */
+var _get_minimum = Module["_get_minimum"] = createExportWrapper("get_minimum");
+
+/** @type {function(...*):?} */
+var _number_minimums = Module["_number_minimums"] = createExportWrapper("number_minimums");
+
+/** @type {function(...*):?} */
+var _minimum_score = Module["_minimum_score"] = createExportWrapper("minimum_score");
+
+/** @type {function(...*):?} */
+var _find_minimums = Module["_find_minimums"] = createExportWrapper("find_minimums");
+
+/** @type {function(...*):?} */
+var _set_weights = Module["_set_weights"] = createExportWrapper("set_weights");
+
+/** @type {function(...*):?} */
 var _main = Module["_main"] = createExportWrapper("main");
 
 /** @type {function(...*):?} */
@@ -2141,9 +2162,6 @@ var ___set_stack_limit = Module["___set_stack_limit"] = createExportWrapper("__s
 var __growWasmMemory = Module["__growWasmMemory"] = createExportWrapper("__growWasmMemory");
 
 /** @type {function(...*):?} */
-var dynCall_iii = Module["dynCall_iii"] = createExportWrapper("dynCall_iii");
-
-/** @type {function(...*):?} */
 var dynCall_ii = Module["dynCall_ii"] = createExportWrapper("dynCall_ii");
 
 /** @type {function(...*):?} */
@@ -2151,6 +2169,9 @@ var dynCall_iiii = Module["dynCall_iiii"] = createExportWrapper("dynCall_iiii");
 
 /** @type {function(...*):?} */
 var dynCall_jiji = Module["dynCall_jiji"] = createExportWrapper("dynCall_jiji");
+
+/** @type {function(...*):?} */
+var dynCall_iii = Module["dynCall_iii"] = createExportWrapper("dynCall_iii");
 
 /** @type {function(...*):?} */
 var dynCall_iidiiii = Module["dynCall_iidiiii"] = createExportWrapper("dynCall_iidiiii");
@@ -2167,8 +2188,8 @@ var dynCall_vii = Module["dynCall_vii"] = createExportWrapper("dynCall_vii");
 
 if (!Object.getOwnPropertyDescriptor(Module, "intArrayFromString")) Module["intArrayFromString"] = function() { abort("'intArrayFromString' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
 if (!Object.getOwnPropertyDescriptor(Module, "intArrayToString")) Module["intArrayToString"] = function() { abort("'intArrayToString' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
-if (!Object.getOwnPropertyDescriptor(Module, "ccall")) Module["ccall"] = function() { abort("'ccall' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
-if (!Object.getOwnPropertyDescriptor(Module, "cwrap")) Module["cwrap"] = function() { abort("'cwrap' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
+Module["ccall"] = ccall;
+Module["cwrap"] = cwrap;
 if (!Object.getOwnPropertyDescriptor(Module, "setValue")) Module["setValue"] = function() { abort("'setValue' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
 if (!Object.getOwnPropertyDescriptor(Module, "getValue")) Module["getValue"] = function() { abort("'getValue' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
 if (!Object.getOwnPropertyDescriptor(Module, "allocate")) Module["allocate"] = function() { abort("'allocate' was not exported. add it to EXTRA_EXPORTED_RUNTIME_METHODS (see the FAQ)") };
@@ -2515,4 +2536,11 @@ run();
 // {{MODULE_ADDITIONS}}
 
 
+
+// Functions from C wasm code
+export var find_minimums = Module.cwrap('find_minimums', 'number', ["string"]);
+export var get_minimum = Module.cwrap('get_minimum', "string", ["number"]);
+export var number_minimums = Module.cwrap('number_minimums', "number");
+export var minimum_score = Module.cwrap('minimum_score', 'number');
+export var set_weights = Module.cwrap('set_weights', null, ["number", "number", "number", "number", "number"]);
 

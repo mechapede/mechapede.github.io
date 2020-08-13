@@ -8,9 +8,9 @@ This page stores the open source projects I have worked on. Code is available fo
 
 # RastJs
 
-A simple game engine written in Javascript for WebGL. See [Webdemos](webdemo.md) for a demonstration. 
+A simple game engine written in Javascript for WebGL. See [graphics](graphics.md) for a demonstration. 
 
 
 # Unnamed Compiler
 
-A simple compiler for a small subset of the c language. See [UnnamedCompiler](compiler.md) for more info.
+A simple compiler for a small subset of the c language. See [Compiler](compiler.md) for more info.

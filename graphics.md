@@ -1,5 +1,5 @@
 ---
-title: WebDemos
+title: Graphics
 ---
 
 The graphical demo consists of two parts, a custom game engine, RastJS, and the graphical demo built using the program.

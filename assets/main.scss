@@ -7,7 +7,7 @@
 /**
  * Special Wrapper for page content (for special canvas and code formatting)
  */
-.wrapper-content h1, h2, h3, p {
+.wrapper-content h1, .wrapper-content h2, .wrapper-content h3, .wrapper-content p {
   max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit} * 2));
   max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));
   margin-right: auto;
@@ -24,7 +24,7 @@
   }
 }
 
-.wrapper-content ul, ol {
+.wrapper-content ul, .wrapper-content ol {
   max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit} * 4));
   max-width:         calc(#{$content-width} - (#{$spacing-unit} * 4));
   margin-right: auto;
@@ -76,6 +76,7 @@
 }
 
 .wrapper-content .canvas_ui {
+  color: ivory;
   padding: $spacing-unit/4;
   background-image: linear-gradient(rgb(96,96,96), rgb(104,104,104));
   border-radius: 8px;
@@ -85,4 +86,69 @@
   padding-bottom: 0px;
   width:100%;
   height:100%;
+}
+
+.keys {
+  color: black;
+  background: ivory;
+  display: inline-block;
+  padding: $spacing-unit/8;
+  border-radius: 8px;
+  width: 50%;
+}
+
+.keys:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+
+.rna-algs {
+  max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit} * 2));
+  max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: $spacing-unit;
+  padding-left: $spacing-unit;
+  @extend %clearfix;
+  
+  color: ivory;
+  
+  @include media-query($on-laptop) {
+    max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit}));
+    max-width:         calc(#{$content-width} - (#{$spacing-unit}));
+    padding-right: $spacing-unit / 2;
+    padding-left: $spacing-unit / 2;
+  }
+  
+  padding: $spacing-unit/4;
+  background-image: linear-gradient(rgb(96,96,96), rgb(104,104,104));
+  border-radius: 8px;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.rna-algs .box-option {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  
+  .big {
+    flex-grow: 4;
+    margin: $spacing-unit/4;
+  }
+  
+  .small {
+    flex-grow: 1;
+    margin: $spacing-unit/4;
+  }
+}
+
+.rna-algs button, .rna-algs textarea, .rna-algs input {
+  box-sizing:border-box;
+  width:100%;
+  height:100%;
+  resize: none;
 }
