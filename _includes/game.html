@@ -1,17 +1,25 @@
 <script type="module" src="/assets/graphics/terra.js"> </script>
 
-<div class="canvas_holder" >
-  <div class="canvas_ui" >
+<div class="game_box" >
     <canvas id="game_canvas">
-      Demo requires a browser that is compatible with WebGL.
+    Demo requires a browser that is compatible with WebGL.
     </canvas>
+    <div class="overlay">
+        <label for="fps">FPS:</label>
+        <span id="fps">0</span> <br>
+        <label for="tris">TRIANGLES:</label>
+        <span id="tris">7</span> <br>
+        <label for="frame_time">FRAME TIME:</label>
+        <span id="frame_time">4</span> <br>
+        <label for="follow_path">Follow Path:</label> 
+        <input type="checkbox" id="follow_path" checked>
+    </div>
     Movement:
     <button type="button" disabled>W</button>
     <button type="button" disabled>A</button>
     <button type="button" disabled>S</button>
     <button type="button" disabled>D</button>
     Look: <i class="fas fa-mouse" style="color:white;"></i> (click on canvas to use)
-  </div>
 </div>
 
 

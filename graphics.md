@@ -13,6 +13,7 @@ RastJS is a simple engine made from scratch for Webgl. The engine takes a JSON m
 The terrain demo is a test project for RastJs. It contains the following rendering and terrain features:
 * Perlin Noise Generated Terrain
 * Height Based Texturing with Blending
+* Spline Interpolation
 * Water Animation
 * Dynamic Vegetation Placement
 * Transparent Meshes
