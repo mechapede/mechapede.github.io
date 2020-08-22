@@ -124,10 +124,7 @@ function mainloop(timestamp) {
   data.setTimedelta(timestamp);
   var timedelta = data.timedelta;
   var tris = 0;
-  last_frame = timestamp; //TODO: cleanup
-  
-  //glcontext.clearColor(1, 1, 1, 1);
-  //glcontext.clear(glcontext.COLOR_BUFFER_BIT | glcontext.DEPTH_BUFFER_BIT);
+  last_frame = timestamp;
 
   var forward = new Float32Array([-Math.cos(camera.rotation[0]) * Math.sin(camera.rotation[1]),Math.sin(camera.rotation[0]),Math.cos(camera.rotation[0]) * Math.cos(camera.rotation[1])]);
   forward = vec3.normalize(forward,forward);
@@ -239,12 +236,9 @@ function mainloop(timestamp) {
   if(elapsed_time >= 1000) {
     var end_frame_time = performance.now();
     var frame_time = end_frame_time - timestamp;
-    data.setStats(ticks, tris/3, frame_time); //TODO: cleanup ugly crap
-    //console.log("FPS ", ticks);
+    data.setStats(ticks, tris/3, frame_time);
     ticks = 0;
     elapsed_time -= 1000;
-    //console.log("Frame Time", frame_time);
-    //console.log("Triangles",tris/3);
   }
 
   if(run) requestAnimationFrame(mainloop);
