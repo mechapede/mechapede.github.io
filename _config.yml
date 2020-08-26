@@ -3,6 +3,8 @@ author: Matthew MacDonald
  
 theme: minima
 
+markdown: kramdown
+
 description: Projects and Demos
 show_downloads: false
 
