@@ -36,8 +36,6 @@ document.getElementById("calc_result").onclick = function(){
   
   set_weights(gap_penalty, min_gap, au_score, gu_score, gc_score);
   find_minimums(sequence);
-  find_minimums(sequence);
-  find_minimums(sequence);
   let seq_structures = ""
   let num_mins = number_minimums();
   for(let i=0; i < num_mins; i++){
