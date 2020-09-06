@@ -124,6 +124,7 @@ function mainloop(timestamp) {
   data.setTimedelta(timestamp);
   var timedelta = data.timedelta;
   var tris = 0;
+  var draw_calls = 0;
   last_frame = timestamp;
 
   var forward = new Float32Array([-Math.cos(camera.rotation[0]) * Math.sin(camera.rotation[1]),Math.sin(camera.rotation[0]),Math.cos(camera.rotation[0]) * Math.cos(camera.rotation[1])]);
@@ -198,6 +199,7 @@ function mainloop(timestamp) {
             setupAttributes(instance.material,model);
             var count = model.indeces.length;
             tris += count;
+            draw_calls++;
             glcontext.drawElements(glcontext.TRIANGLES, count, glcontext.UNSIGNED_SHORT, 0);
           }
         }
@@ -218,6 +220,7 @@ function mainloop(timestamp) {
         setupPositionUniforms(instance,camera_matrix);
         var count = model.indeces.length;
         tris += count;
+        draw_calls++;
         glcontext.drawElements(glcontext.TRIANGLES, count, glcontext.UNSIGNED_SHORT, 0);
       }
       break;
@@ -236,7 +239,7 @@ function mainloop(timestamp) {
   if(elapsed_time >= 1000) {
     var end_frame_time = performance.now();
     var frame_time = end_frame_time - timestamp;
-    data.setStats(ticks, tris/3, frame_time);
+    data.setStats(ticks, tris/3, frame_time, draw_calls);
     ticks = 0;
     elapsed_time -= 1000;
   }

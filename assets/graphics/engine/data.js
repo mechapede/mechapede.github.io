@@ -40,10 +40,12 @@ locked:   false //prevents WASD movement
 export var fps = 0;
 export var tris = 0;
 export var frame_time = 0;
-export function setStats(new_fps,new_tris,new_frame_time){
+export var draw_calls = 0;
+export function setStats(new_fps,new_tris,new_frame_time,new_draw_calls){
   fps = new_fps;
   tris = new_tris;
   frame_time = new_frame_time;
+  draw_calls = new_draw_calls;
 }
 
 export function resizeCanvas() {
